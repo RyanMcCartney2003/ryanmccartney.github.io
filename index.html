@@ -7,132 +7,154 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-deep-space: #1a202c; /* A very dark, almost black blue */
-            --bg-slate: #2d3748; /* Dark slate gray */
-            --text-off-white: #e2e8f0; /* Soft white for text */
-            --accent-gold: #f6ad55; /* A warm, vibrant gold/orange */
-            --accent-teal: #4fd1c5; /* A bright teal */
+            --primary-bg: #c46363;
+            --secondary-bg: #bd4949;
+            --text-light: #ffffff;
+            --text-muted: #f3d9d9;
+            --accent: #ffffff;
         }
 
         body {
-            background-color: var(--bg-deep-space);
-            color: var(--text-off-white);
-            font-family: 'Lato', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
         }
 
-        h1, h2, h3, h4, .font-serif {
-            font-family: 'Lora', serif;
+        h1, h2, h3, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
         }
 
-        .text-glow {
-            text-shadow: 0 0 8px rgba(246, 173, 85, 0.4);
+        .glass-nav {
+            background-color: rgba(189, 73, 73, 0.8); /* from #bd4949 */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-link {
             position: relative;
+            padding-bottom: 8px;
             transition: color 0.3s ease;
         }
         .nav-link::after {
             content: '';
             position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--accent-gold);
-            transition: width 0.4s ease;
+            background-color: var(--accent);
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .nav-link:hover, .nav-link.active {
-            color: var(--accent-gold);
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
         }
-        .nav-link:hover::after, .nav-link.active::after {
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
+        }
+        
+        .btn {
+            transition: all 0.3s ease;
         }
 
         .btn-primary {
-            background-color: var(--accent-gold);
-            color: var(--bg-deep-space);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 14px 0 rgba(246, 173, 85, 0.3);
+            background-color: var(--text-light);
+            color: var(--secondary-bg);
+            font-weight: bold;
         }
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 20px 0 rgba(246, 173, 85, 0.4);
+            background-color: var(--text-muted);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--text-muted);
+            color: var(--text-light);
+        }
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--secondary-bg);
+            transform: translateY(-3px);
         }
 
         .book-card {
-            background-color: var(--bg-slate);
+            background-color: var(--secondary-bg);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .book-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        .book-cover {
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        .book-card:hover .book-cover {
-             transform: scale(1.03);
-        }
-
-        .glass-nav {
-            background-color: rgba(26, 32, 44, 0.7);
-            backdrop-filter: blur(10px);
-        }
-
-        /* Scroll reveal animations */
-        .reveal {
+        
+        /* Animation */
+        .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.2s;
         }
-        .reveal.visible {
+        .fade-in-up.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        section {
+            padding-top: 100px;
+            margin-top: -100px;
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300 glass-nav shadow-md">
+    <header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="#hero" class="text-3xl font-bold font-serif tracking-wider text-white">Roswell McBride</a>
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#books" class="nav-link text-lg">Books</a>
-                    <a href="#about" class="nav-link text-lg">About</a>
-                    <a href="#contact" class="nav-link text-lg">Contact</a>
+                <a href="#hero" class="text-3xl font-heading tracking-tight text-white">Roswell McBride</a>
+                <nav class="hidden md:flex items-center space-x-10">
+                    <a href="#books" class="nav-link text-gray-200">Books</a>
+                    <a href="#about" class="nav-link text-gray-200">About</a>
+                    <a href="#contact" class="nav-link text-gray-200">Contact</a>
                 </nav>
-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-200 hover:text-white focus:outline-none">
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
              <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden pt-4">
-                 <a href="#books" class="nav-link block py-2 text-lg">Books</a>
-                 <a href="#about" class="nav-link block py-2 text-lg">About</a>
-                 <a href="#contact" class="nav-link block py-2 text-lg">Contact</a>
+            <div id="mobile-menu" class="hidden md:hidden pt-4 space-y-2">
+                 <a href="#books" class="nav-link block py-2 text-lg text-gray-200">Books</a>
+                 <a href="#about" class="nav-link block py-2 text-lg text-gray-200">About</a>
+                 <a href="#contact" class="nav-link block py-2 text-lg text-gray-200">Contact</a>
             </div>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center pt-20">
+        <section id="hero" class="min-h-screen flex items-center pt-24">
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-4xl mx-auto">
-                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-white reveal text-glow">Weaving Worlds with Words</h1>
-                    <p class="mt-6 text-xl md:text-2xl text-gray-300 reveal" style="transition-delay: 200ms;">
-                        Explore the captivating tales and intricate universes from the mind of Roswell McBride.
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-white fade-in-up">Stories That Resonate.</h1>
+                    <p class="mt-6 text-xl md:text-2xl text-text-muted max-w-2xl mx-auto fade-in-up" style="transition-delay: 0.3s;">
+                        Dive into meticulously crafted worlds that challenge the imagination and stir the soul.
                     </p>
-                    <a href="#books" class="btn-primary inline-block font-bold py-4 px-10 rounded-full mt-10 text-lg reveal" style="transition-delay: 400ms;">
-                        Discover My Books
-                    </a>
+                    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 fade-in-up" style="transition-delay: 0.4s;">
+                         <a href="#books" class="btn btn-primary w-full sm:w-auto text-lg py-3 px-8 rounded-full">
+                            Explore Books
+                        </a>
+                         <a href="#about" class="btn btn-outline w-full sm:w-auto text-lg py-3 px-8 rounded-full">
+                            About The Author
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -140,50 +162,53 @@
         <!-- Published Works Section -->
         <section id="books" class="py-24">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">Published Works</h2>
-                    <div class="w-24 h-1 bg-accent-gold mx-auto mt-4"></div>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in-up">Published Works</h2>
+                    <p class="text-lg text-text-muted mt-2 fade-in-up" style="transition-delay: 0.3s;">A selection of my latest novels.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Book 1 -->
-                    <div class="book-card p-6 rounded-lg text-center reveal">
-                        <img src="https://placehold.co/400x600/f6ad55/1a202c?text=The\nObsidian\nLabyrinth" alt="Book cover for The Obsidian Labyrinth" class="book-cover w-2/3 mx-auto rounded-md">
-                        <h3 class="text-2xl font-bold mt-6">The Obsidian Labyrinth</h3>
-                        <p class="text-accent-teal mt-1 font-semibold">Fantasy Noir</p>
-                        <p class="mt-3 text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel nisl vitae nisl semper sollicitudin.</p>
+                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
+                        <img src="https://placehold.co/500x750/bd4949/ffffff?text=The\nCrimson\nCipher" alt="Book Cover" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white">The Crimson Cipher</h3>
+                            <p class="text-text-muted mt-2 mb-4">A thrilling tale of espionage and ancient secrets. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
+                        </div>
                     </div>
                     <!-- Book 2 -->
-                    <div class="book-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;">
-                        <img src="https://placehold.co/400x600/4fd1c5/1a202c?text=Echoes\nof\nStarlight" alt="Book cover for Echoes of Starlight" class="book-cover w-2/3 mx-auto rounded-md">
-                        <h3 class="text-2xl font-bold mt-6">Echoes of Starlight</h3>
-                        <p class="text-accent-teal mt-1 font-semibold">Science Fiction</p>
-                        <p class="mt-3 text-gray-400">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
+                        <img src="https://placehold.co/500x750/bd4949/ffffff?text=Stardust\nNomad" alt="Book Cover" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white">Stardust Nomad</h3>
+                            <p class="text-text-muted mt-2 mb-4">An epic journey across galaxies to find a new home. Duis aute irure dolor in reprehenderit in voluptate.</p>
+                             <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
+                        </div>
                     </div>
                     <!-- Book 3 -->
-                    <div class="book-card p-6 rounded-lg text-center reveal" style="transition-delay: 400ms;">
-                        <img src="https://placehold.co/400x600/a0aec0/1a202c?text=Whispers\nof the\nDeep" alt="Book cover for Whispers of the Deep" class="book-cover w-2/3 mx-auto rounded-md">
-                        <h3 class="text-2xl font-bold mt-6">Whispers of the Deep</h3>
-                        <p class="text-accent-teal mt-1 font-semibold">Cosmic Horror</p>
-                        <p class="mt-3 text-gray-400">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
+                        <img src="https://placehold.co/500x750/bd4949/ffffff?text=The\nSilent\nOrchid" alt="Book Cover" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white">The Silent Orchid</h3>
+                            <p class="text-text-muted mt-2 mb-4">A historical fiction set in feudal Japan. Excepteur sint occaecat cupidatat non proident.</p>
+                             <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-24 bg-slate">
+        <section id="about" class="py-24">
             <div class="container mx-auto px-6">
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/3 reveal">
-                        <img src="https://placehold.co/400x400/1a202c/e2e8f0?text=RM" alt="Portrait of Roswell McBride" class="rounded-full shadow-2xl mx-auto border-4 border-accent-teal">
+                 <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+                    <div class="md:w-1/3 flex-shrink-0 fade-in-up">
+                        <img src="https://placehold.co/400x400/bd4949/ffffff?text=RM" alt="Portrait of Roswell McBride" class="rounded-full shadow-2xl mx-auto">
                     </div>
-                    <div class="md:w-2/3 text-center md:text-left reveal" style="transition-delay: 200ms;">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white">Meet the Author</h2>
-                        <p class="mt-6 text-lg text-gray-300 leading-relaxed">
-                            Roswell McBride has been a voracious reader and writer since childhood, finding solace and adventure between the pages of books. Nunc vitae ex et sem blandit ultrices. Ut scelerisque, sapien at consequat dignissim, turpis ipsum interdum elit, sit amet lacinia arcu enim eu ante. 
-                        </p>
-                        <p class="mt-4 text-lg text-gray-300 leading-relaxed">
-                             Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Curabitur blandit tempus porttitor.
+                    <div class="md:w-2/3 text-center md:text-left fade-in-up" style="transition-delay: 0.3s;">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">About the Author</h2>
+                        <p class="mt-6 text-lg text-text-muted leading-relaxed">
+                           Roswell McBride is an author dedicated to the craft of storytelling. My work explores the intersections of technology, humanity, and the unknown. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
                     </div>
                 </div>
@@ -193,13 +218,13 @@
         <!-- Contact Section -->
         <section id="contact" class="py-24">
             <div class="container mx-auto px-6 text-center">
-                <div class="max-w-2xl mx-auto reveal">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">Join the Conversation</h2>
-                    <p class="mt-4 text-xl text-gray-300">
-                        Have questions, comments, or inquiries for press or events? I'd love to hear from you.
+                <div class="max-w-2xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in-up">Let's Connect</h2>
+                    <p class="mt-4 text-xl text-text-muted fade-in-up" style="transition-delay: 0.3s;">
+                       Interested in collaborations, interviews, or just want to share your thoughts on my books? Send me an email.
                     </p>
-                    <a href="mailto:bryanrondonuwu14@gmail.com" class="btn-primary inline-block font-bold py-4 px-10 rounded-full mt-8 text-lg">
-                        Get In Touch
+                    <a href="mailto:bryanrondonuwu14@gmail.com" class="btn btn-primary inline-block font-bold py-4 px-10 rounded-full mt-8 text-lg fade-in-up" style="transition-delay: 0.4s;">
+                        Say Hello
                     </a>
                 </div>
             </div>
@@ -208,8 +233,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate py-8">
-        <div class="container mx-auto px-6 text-center text-gray-400">
+    <footer class="bg-secondary-bg py-8 border-t border-t-white/10">
+        <div class="container mx-auto px-6 text-center text-text-muted">
             <p>&copy; 2025 Roswell McBride. All Rights Reserved.</p>
         </div>
     </footer>
@@ -222,54 +247,54 @@
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-            
+
+            // Close mobile menu on link click
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
-                     mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.add('hidden');
                 });
+            });
+            
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
             });
 
             // Active Nav Link on Scroll
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('header nav a, #mobile-menu a');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.5
-            };
-
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                let currentSectionId = '';
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const id = entry.target.getAttribute('id');
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === `#${id}`) {
-                                link.classList.add('active');
-                            }
-                        });
+                         // Favor the one that is most visible
+                        if (entry.intersectionRatio > 0.5) {
+                            currentSectionId = entry.target.getAttribute('id');
+                        }
                     }
                 });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                sectionObserver.observe(section);
-            });
-
-            // Reveal on Scroll Animation
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
+                
+                // If we have a current section, update links
+                if (currentSectionId) {
+                     navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${currentSectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            }, { rootMargin: '-50% 0px -50% 0px' }); // Activates when section is in the middle of the viewport
+            
+            sections.forEach(section => sectionObserver.observe(section));
         });
     </script>
 </body>
