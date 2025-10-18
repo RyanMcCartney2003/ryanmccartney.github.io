@@ -12,7 +12,7 @@
         :root {
             --primary-bg: #c46363;
             --secondary-bg: #bd4949;
-            --text-light: #ffffff;
+            --text-light: #f3f3f3; /* Changed to #f3f3f3 */
             --text-muted: #f3d9d9;
             --accent: #ffffff;
         }
@@ -38,6 +38,7 @@
         .nav-link {
             position: relative;
             padding-bottom: 8px;
+            color: var(--text-light); /* Changed to #f3f3f3 */
             transition: color 0.3s ease;
         }
         .nav-link::after {
@@ -111,39 +112,46 @@
             padding-top: 100px;
             margin-top: -100px;
         }
+
+        /* Icon styling */
+        .social-icon {
+            color: #f3f3f3; /* Default icon color */
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-icon:hover {
+            color: #ffffff; /* Hover icon color */
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header -->
-    <header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <!-- Header --><header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="#hero" class="text-3xl font-heading tracking-tight text-white">Roswell McBride</a>
                 <nav class="hidden md:flex items-center space-x-10">
-                    <a href="#books" class="nav-link text-gray-200">Books</a>
-                    <a href="#about" class="nav-link text-gray-200">About</a>
-                    <a href="#contact" class="nav-link text-gray-200">Contact</a>
+                    <a href="#books" class="nav-link">Books</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </nav>
                 <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-200 hover:text-white focus:outline-none">
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
-             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden pt-4 space-y-2">
-                 <a href="#books" class="nav-link block py-2 text-lg text-gray-200">Books</a>
-                 <a href="#about" class="nav-link block py-2 text-lg text-gray-200">About</a>
-                 <a href="#contact" class="nav-link block py-2 text-lg text-gray-200">Contact</a>
+             <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden pt-4 space-y-2">
+                 <a href="#books" class="nav-link block py-2 text-lg">Books</a>
+                 <a href="#about" class="nav-link block py-2 text-lg">About Me</a>
+                 <a href="#contact" class="nav-link block py-2 text-lg">Contact</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center pt-24">
+        <!-- Hero Section --><section id="hero" class="min-h-screen flex items-center pt-24">
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-4xl mx-auto">
-                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter text-white fade-in-up">Stories That Resonate.</h1>
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter fade-in-up">Stories That Resonate.</h1>
                     <p class="mt-6 text-xl md:text-2xl text-text-muted max-w-2xl mx-auto fade-in-up" style="transition-delay: 0.3s;">
                         Dive into meticulously crafted worlds that challenge the imagination and stir the soul.
                     </p>
@@ -156,74 +164,71 @@
                         </a>
                     </div>
                     <div class="mt-16 flex items-center justify-center gap-8 fade-in-up" style="transition-delay: 0.5s;">
-                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-white transition-colors duration-300 text-lg tracking-wide font-medium hover:underline">
-                            Instagram
+                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+                            <svg class="w-7 h-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
                         </a>
-                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-white transition-colors duration-300 text-lg tracking-wide font-medium hover:underline">
-                            Amazon
+                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+                            <svg class="w-7 h-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.455 17.067L1 21.01h22l-4.455-3.943c-.4-.352-.89-.545-1.405-.545H6.86c-.515 0-1.005.193-1.405.545zM22.955 7.042c-.05-1.077-.92-1.93-2.022-1.93h-17.86c-1.102 0-1.972.853-2.022 1.93L1 15.01h22z"></path>
+                            </svg>
                         </a>
-                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-white transition-colors duration-300 text-lg tracking-wide font-medium hover:underline">
-                            <svg width="24" height="24">
-    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 ..."/>
-  </svg>
-</a>
-<p style="font-size: 10px; color: gray;">
-  <a href="https://www.flaticon.com/free-icons/instagram-logo" title="instagram logo icons">
-    
+                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" class="social-icon">
+                            <svg class="w-7 h-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c11 3 21 0 21-11.15v-1a10.87 10.87 0 003-3.15z"></path>
+                            </svg>
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Published Works Section -->
-        <section id="books" class="py-24">
+        <!-- Published Works Section --><section id="books" class="py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in-up">Published Works</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight fade-in-up">Published Works</h2>
                     <p class="text-lg text-text-muted mt-2 fade-in-up" style="transition-delay: 0.3s;">A selection of my latest novels.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Book 1 -->
-                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
+                    <!-- Book 1 --><div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
                         <img src="https://placehold.co/500x750/bd4949/ffffff?text=The\nCrimson\nCipher" alt="Book Cover" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold text-white">The Crimson Cipher</h3>
-                            <p class="text-text-muted mt-2 mb-4">A thrilling tale of espionage and ancient secrets. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
+                            <h3 class="text-2xl font-bold">In Her Shadow</h3>
+                            <p class="text-text-muted mt-2 mb-4">When shadows stretch too far and memories twist into nightmares, Darla must confront the truth buried deep within the walls of her childhood. But every answer comes with a price, and not all voices can be trusted.</p>
+                            <a href="https://www.amazon.in/Her-Shadow-Roswell-McBride-ebook/dp/B0DZ15PTGY" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
                         </div>
                     </div>
-                    <!-- Book 2 -->
-                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
+                    <!-- Book 2 --><div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
                         <img src="https://placehold.co/500x750/bd4949/ffffff?text=Stardust\nNomad" alt="Book Cover" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold text-white">Stardust Nomad</h3>
-                            <p class="text-text-muted mt-2 mb-4">An epic journey across galaxies to find a new home. Duis aute irure dolor in reprehenderit in voluptate.</p>
-                             <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
+                            <h3 class="text-2xl font-bold">Unpublished Book</h3>
+                            <p class="text-text-muted mt-2 mb-4">No Description.</p>
+                             <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Unavailable</a>
                         </div>
                     </div>
-                    <!-- Book 3 -->
-                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
+                    <!-- Book 3 --><div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
                         <img src="https://placehold.co/500x750/bd4949/ffffff?text=The\nSilent\nOrchid" alt="Book Cover" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-bold text-white">The Silent Orchid</h3>
-                            <p class="text-text-muted mt-2 mb-4">A historical fiction set in feudal Japan. Excepteur sint occaecat cupidatat non proident.</p>
-                             <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Buy on Amazon</a>
+                            <h3 class="text-2xl font-bold">Unpublisheed Book</h3>
+                            <p class="text-text-muted mt-2 mb-4">No Description.</p>
+                             <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Unavailable</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="py-24">
+        <!-- About Section --><section id="about" class="py-24">
             <div class="container mx-auto px-6">
                  <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
                     <div class="md:w-1/3 flex-shrink-0 fade-in-up">
                         <img src="https://placehold.co/400x400/bd4949/ffffff?text=RM" alt="Portrait of Roswell McBride" class="rounded-full shadow-2xl mx-auto">
                     </div>
                     <div class="md:w-2/3 text-center md:text-left fade-in-up" style="transition-delay: 0.3s;">
-                        <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">About the Author</h2>
+                        <h2 class="text-4xl md:text-5xl font-bold tracking-tight">About the Author</h2>
                         <p class="mt-6 text-lg text-text-muted leading-relaxed">
                            Roswell McBride is an author dedicated to the craft of storytelling. My work explores the intersections of technology, humanity, and the unknown. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
@@ -232,16 +237,15 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-24">
+        <!-- Contact Section --><section id="contact" class="py-24">
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-2xl mx-auto">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight fade-in-up">Let's Connect</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight fade-in-up">Let's Connect</h2>
                     <p class="mt-4 text-xl text-text-muted fade-in-up" style="transition-delay: 0.3s;">
                        Interested in collaborations, interviews, or just want to share your thoughts on my books? Send me an email.
                     </p>
                     <a href="mailto:bryanrondonuwu14@gmail.com" class="btn btn-primary inline-block font-bold py-4 px-10 rounded-full mt-8 text-lg fade-in-up" style="transition-delay: 0.4s;">
-                        Say Hello
+                        Say Hello!
                     </a>
                 </div>
             </div>
@@ -249,8 +253,7 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-secondary-bg py-8 border-t border-t-white/10">
+    <!-- Footer --><footer class="bg-secondary-bg py-8 border-t border-t-white/10">
         <div class="container mx-auto px-6 text-center text-text-muted">
             <p>&copy; 2025 Roswell McBride. All Rights Reserved.</p>
         </div>
