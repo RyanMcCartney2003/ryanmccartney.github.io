@@ -13,7 +13,7 @@
         :root {
             --primary-bg: #ad3c3c;
             --secondary-bg: #bd4949;
-            --text-light: #f3f3f3; /* Changed to #f3f3f3 */
+            --text-light: #f3f3f3;
             --text-muted: #f3d9d9;
             --accent: #ffffff;
         }
@@ -39,7 +39,7 @@
         .nav-link {
             position: relative;
             padding-bottom: 8px;
-            color: var(--text-light); /* Changed to #f3f3f3 */
+            color: var(--text-light);
             transition: color 0.3s ease;
         }
         .nav-link::after {
@@ -97,6 +97,22 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
+        /* New styles for article cards */
+        .article-card {
+            background-color: var(--secondary-bg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+        }
+        .article-card a {
+            margin-top: auto; /* Pushes the 'Read More' link to the bottom */
+        }
+
         /* Animation */
         .fade-in-up {
             opacity: 0;
@@ -126,17 +142,19 @@
         footer {
             background-color: #f3f3f3;
             color: #ad3c3c;
-}
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Header --><header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <!-- Header -->
+    <header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <a href="#hero" class="text-3xl font-heading tracking-tight text-white">Roswell McBride</a>
                 <nav class="hidden md:flex items-center space-x-10">
                     <a href="#books" class="nav-link">Books</a>
+                    <a href="#writings" class="nav-link">Writings</a>
                     <a href="#about" class="nav-link">About</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
@@ -144,17 +162,19 @@
                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
-             <!-- Mobile Menu --><div id="mobile-menu" class="hidden md:hidden pt-4 space-y-2">
+             <!-- Mobile Menu -->
+             <div id="mobile-menu" class="hidden md:hidden pt-4 space-y-2">
                  <a href="#books" class="nav-link block py-2 text-lg">Books</a>
+                 <a href="#writings" class="nav-link block py-2 text-lg">Writings</a>
                  <a href="#about" class="nav-link block py-2 text-lg">About Me</a>
                  <a href="#contact" class="nav-link block py-2 text-lg">Contact</a>
             </div>
         </div>
-        
     </header>
 
     <main>
-        <!-- Hero Section --><section id="hero" class="min-h-screen flex items-center pt-24">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center pt-24">
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-4xl mx-auto">
                     <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter fade-in-up">Stories That Resonate.</h1>
@@ -192,6 +212,7 @@
             </div>
         </section>
 
+        <!-- Books Section -->
         <section id="books" class="py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
@@ -199,7 +220,8 @@
                     <p class="text-lg text-text-muted mt-2 fade-in-up" style="transition-delay: 0.3s;">A selection of my latest novel(s).</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Book 1 --><div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
+                    <!-- Book 1 -->
+                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
                         <img src="in her shadow.png" alt="Book Cover In Her Shadow" class="w-full h-auto object-cover">
                         <div class="p-6">
                             <h3 class="text-2xl font-bold">In Her Shadow</h3>
@@ -207,7 +229,8 @@
                             <a href="https://www.amazon.in/Her-Shadow-Roswell-McBride-ebook/dp/B0DZ15PTGY" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Purchase on Amazon</a>
                         </div>
                     </div>
-                    <!-- Book 2 --><div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
+                    <!-- Book 2 -->
+                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
                         <img src="no-book-filler.png" alt="Book Cover" class="w-full h-auto object-cover">
                         <div class="p-6">
                             <h3 class="text-2xl font-bold">Unpublished Book</h3>
@@ -215,7 +238,8 @@
                              <a href="https://guthib.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary w-full block text-center py-3 rounded-lg">Unavailable</a>
                         </div>
                     </div>
-                    <!-- Book 3 --><div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
+                    <!-- Book 3 -->
+                    <div class="book-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
                         <img src="no-book-filler.png" alt="Book Cover" class="w-full h-auto object-cover">
                         <div class="p-6">
                             <h3 class="text-2xl font-bold">Unpublished Book</h3>
@@ -227,7 +251,47 @@
             </div>
         </section>
 
-        <!-- About --><section id="about" class="py-24">
+        <!-- Writings Section (NEW) -->
+        <section id="writings" class="py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight fade-in-up">From the Desk</h2>
+                    <p class="text-lg text-text-muted mt-2 fade-in-up" style="transition-delay: 0.3s;">A collection of articles, stories, and musings.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Article Card 1 -->
+                    <div class="article-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.2s;">
+                        <div class="p-8 h-full flex flex-col">
+                            <p class="text-sm text-text-muted mb-2">October 19, 2025</p>
+                            <h3 class="text-2xl font-bold mb-3">The Art of Pacing in Thrillers</h3>
+                            <p class="text-text-muted mb-6">Exploring how the manipulation of time and information creates the unbearable tension that defines the thriller genre.</p>
+                            <a href="#" class="font-bold text-white hover:underline mt-auto">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 2 -->
+                    <div class="article-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="p-8 h-full flex flex-col">
+                            <p class="text-sm text-text-muted mb-2">September 28, 2025</p>
+                            <h3 class="text-2xl font-bold mb-3">Character Flaws That We Love</h3>
+                            <p class="text-text-muted mb-6">A deep dive into why readers connect more with flawed, realistic characters than with perfect heroes.</p>
+                            <a href="#" class="font-bold text-white hover:underline mt-auto">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Article Card 3 -->
+                    <div class="article-card rounded-xl overflow-hidden fade-in-up" style="transition-delay: 0.4s;">
+                        <div class="p-8 h-full flex flex-col">
+                             <p class="text-sm text-text-muted mb-2">August 15, 2025</p>
+                            <h3 class="text-2xl font-bold mb-3">World-Building: A Short Guide</h3>
+                            <p class="text-text-muted mb-6">Tips and tricks for creating immersive and believable worlds that serve the story without overwhelming it.</p>
+                            <a href="#" class="font-bold text-white hover:underline mt-auto">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="py-24">
             <div class="container mx-auto px-6">
                  <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
                     <div class="md:w-1/3 flex-shrink-0 fade-in-up">
@@ -243,7 +307,8 @@
             </div>
         </section>
 
-        <!-- Contact --><section id="contact" class="py-24">
+        <!-- Contact -->
+        <section id="contact" class="py-24">
             <div class="container mx-auto px-6 text-center">
                 <div class="max-w-2xl mx-auto">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight fade-in-up">Let's Connect</h2>
@@ -259,7 +324,8 @@
 
     </main>
 
-    <!-- Footer --><footer class="bg-secondary-bg py-2 border-t border-t-white/10">
+    <!-- Footer -->
+    <footer class="bg-secondary-bg py-2 border-t border-t-white/10">
         <div class="container mx-auto px-6 text-center text-text-muted">
             <p>&copy; 2025 Roswell McBride. All Rights Reserved.</p>
         </div>
@@ -322,66 +388,6 @@
             
             sections.forEach(section => sectionObserver.observe(section));
         });
-        // --- TYPING EFFECT LOGIC ---
-            const typingContainer = document.getElementById('typing-container');
-            const words = ["apple", "booth", "citrus", "denevier", "arthur"];
-            
-            // State variables for the typing effect
-            let wordIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-
-            // Constants for timing
-            const typingSpeed = 150;
-            const deletingSpeed = 100;
-            const pauseDuration = 1500;
-
-            function typeEffect() {
-                const currentWord = words[wordIndex];
-                let timeoutSpeed = typingSpeed;
-
-                if (isDeleting) {
-                    // --- Handle Deleting ---
-                    typingContainer.textContent = currentWord.substring(0, charIndex - 1);
-                    charIndex--;
-                    timeoutSpeed = deletingSpeed;
-                } else {
-                    // --- Handle Typing ---
-                    // The non-breaking space `\u00A0` prevents the element from collapsing when empty
-                    typingContainer.textContent = currentWord.substring(0, charIndex + 1) || '\u00A0';
-                    charIndex++;
-                }
-
-                // --- Check for state change ---
-                if (!isDeleting && charIndex === currentWord.length) {
-                    // Word has been fully typed, pause and then start deleting
-                    isDeleting = true;
-                    timeoutSpeed = pauseDuration;
-                } else if (isDeleting && charIndex === 0) {
-                    // Word has been fully deleted, move to the next word
-                    isDeleting = false;
-                    wordIndex = (wordIndex + 1) % words.length; // Loop back to the start
-                    timeoutSpeed = typingSpeed;
-                }
-                
-                // Call the function again after the calculated delay
-                setTimeout(typeEffect, timeoutSpeed);
-            }
-
-            // Start the effect
-            typeEffect();
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
