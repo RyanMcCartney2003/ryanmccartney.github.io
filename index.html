@@ -322,9 +322,58 @@
             
             sections.forEach(section => sectionObserver.observe(section));
         });
+        // --- TYPING EFFECT LOGIC ---
+            const typingContainer = document.getElementById('typing-container');
+            const words = ["apple", "booth", "citrus", "denevier", "arthur"];
+            
+            // State variables for the typing effect
+            let wordIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            // Constants for timing
+            const typingSpeed = 150;
+            const deletingSpeed = 100;
+            const pauseDuration = 1500;
+
+            function typeEffect() {
+                const currentWord = words[wordIndex];
+                let timeoutSpeed = typingSpeed;
+
+                if (isDeleting) {
+                    // --- Handle Deleting ---
+                    typingContainer.textContent = currentWord.substring(0, charIndex - 1);
+                    charIndex--;
+                    timeoutSpeed = deletingSpeed;
+                } else {
+                    // --- Handle Typing ---
+                    // The non-breaking space `\u00A0` prevents the element from collapsing when empty
+                    typingContainer.textContent = currentWord.substring(0, charIndex + 1) || '\u00A0';
+                    charIndex++;
+                }
+
+                // --- Check for state change ---
+                if (!isDeleting && charIndex === currentWord.length) {
+                    // Word has been fully typed, pause and then start deleting
+                    isDeleting = true;
+                    timeoutSpeed = pauseDuration;
+                } else if (isDeleting && charIndex === 0) {
+                    // Word has been fully deleted, move to the next word
+                    isDeleting = false;
+                    wordIndex = (wordIndex + 1) % words.length; // Loop back to the start
+                    timeoutSpeed = typingSpeed;
+                }
+                
+                // Call the function again after the calculated delay
+                setTimeout(typeEffect, timeoutSpeed);
+            }
+
+            // Start the effect
+            typeEffect();
     </script>
 </body>
 </html>
+
 
 
 
